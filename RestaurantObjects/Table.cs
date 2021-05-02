@@ -1,11 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RestaurantObjects
 {
     public class Table
     {
-        public static int Table_numbers { get; set; } = 0;
+        // constants
+        private const char FILE_SEPARATOR = ';';
+
+        private const int SEATS = 0;
+        private const int OCUPIED = 1;
+        private const int RESERVED = 2;
+
+        public static List<Table> AllTables = new List<Table>();
         int number { get; set; }
         int seats { get; set; }
         bool ocupied { get; set; }
@@ -14,36 +22,38 @@ namespace RestaurantObjects
         //Default Constructor
         public Table()
         {
-            number = ++Table_numbers;
+            number = AllTables.Count + 1;
             seats = 0;
             ocupied = false;
             reserved = false;
+            AllTables.Add(this);
         }
 
         //Default Constructor with number of seats
         public Table(int _seats)
         {
-            number = ++Table_numbers;
+            number = AllTables.Count + 1;
             seats = _seats;
             ocupied = reserved = false;
+            AllTables.Add(this);
         }
 
         /* 
             Constructor using string with information
             Order of information { seats -> ocupied -> reserved }
-            Example: "4,no,yes"
+            Example: "4;yes;no"
         */
         public Table(string TableAsString)
         {
-            string[] TableAsArrayOfStrings = TableAsString.Split(',');
+            string[] TableAsArrayOfStrings = TableAsString.Split(FILE_SEPARATOR);
             if (TableAsArrayOfStrings.Length != 3)
             {
-                throw new ArgumentException("String must contain 3 fields", "number of fields");
+                throw new Exception("String must contain 3 fields");
             }
             int _seats;
             if (!int.TryParse(TableAsArrayOfStrings[0], out _seats))
             {
-                throw new ArgumentException("Number of seats is not a number", "field type");
+                throw new ArgumentException("Number of seats is not a number", "seats");
             }
             string[] choices = { "yes", "no" };
             TableAsArrayOfStrings[1] = TableAsArrayOfStrings[1].ToLower();
@@ -55,10 +65,11 @@ namespace RestaurantObjects
             }
             else
             {
-                throw new ArgumentException("Ocupied and reserved can only be yes/no", "field type");
+                throw new ArgumentException("Ocupied and reserved can only be yes/no", "ocupied/reserved");
             }
             seats = _seats;
-            number = ++Table_numbers;
+            number = AllTables.Count + 1;
+            AllTables.Add(this);
         }
 
         public int GetNumber()
@@ -93,6 +104,11 @@ namespace RestaurantObjects
         public string ConvertToString()
         {
             return $"Table #{number} has {seats} seats, is {(ocupied ? "ocupied" : "available")}, and is {(reserved ? "reserved" : "not reserved")}.\n";
+        }
+
+        public string ConvertToFileString()
+        {
+            return string.Format("{1}{0}{2}{0}{3}", FILE_SEPARATOR, seats.ToString(), ocupied ? "yes": "no", reserved ? "yes": "no");
         }
     }
 }

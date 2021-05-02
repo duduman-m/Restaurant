@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAB15CFE-2C4D-4083-BA94-F326BB9C2B77}</ProjectGuid>
+    <ProjectGuid>{E6036973-6FC0-47FD-9D99-3DF9BD8FF79A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>RestaurantConsole</RootNamespace>
-    <AssemblyName>RestaurantConsole</AssemblyName>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -34,7 +34,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,20 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataFactory.cs" />
+    <Compile Include="Binary_File_Administration.cs" />
+    <Compile Include="IDataAccess.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Text_File_Administration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
-      <Project>{e6036973-6fc0-47fd-9d99-3df9bd8ff79a}</Project>
-      <Name>DataAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RestaurantObjects\RestaurantObjects.csproj">
-      <Project>{65676ae5-eb93-457d-b1f1-a186021a29fc}</Project>
+      <Project>{65676AE5-EB93-457D-B1F1-A186021A29FC}</Project>
       <Name>RestaurantObjects</Name>
     </ProjectReference>
   </ItemGroup>
