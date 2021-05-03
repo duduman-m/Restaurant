@@ -16,6 +16,7 @@ namespace RestaurantObjects
         private const int STATUS = 4;
         private const int TABLE = 5;
         private const int PRODUCTS = 6;
+        private const int DISCOUNT = 7;
 
         public static List<Order> AllOrders = new List<Order>();
         int number { set; get; }
@@ -23,7 +24,8 @@ namespace RestaurantObjects
         string info { set; get; }
         float price { set; get; }
         float time { set; get; } //In minutes
-        string status { get; set; }
+        Status status { set; get; }
+        Discount discount { set; get; }
 
         Table table;
         Product[] products;
@@ -32,7 +34,9 @@ namespace RestaurantObjects
         public Order()
         {
             number = AllOrders.Count + 1;
-            client = info = status = "Undefined";
+            client = info = "Undefined";
+            status = 0;
+            discount = 0;
             price = time = 0;
             table = null;
             Array.Resize(ref products, 0);
@@ -47,9 +51,9 @@ namespace RestaurantObjects
         public Order(string OrderAsString)
         {
             string[] OrderAsArrayOfStrings = OrderAsString.Split(FILE_SEPARATOR);
-            if (OrderAsArrayOfStrings.Length != 7)
+            if (OrderAsArrayOfStrings.Length != 8)
             {
-                throw new Exception("String must contain 7 fields");
+                throw new Exception("String must contain 8 fields");
             }
             float _price;
             if (!float.TryParse(OrderAsArrayOfStrings[PRICE], out _price))
@@ -66,13 +70,26 @@ namespace RestaurantObjects
             {
                 throw new ArgumentException("Table is not a number", "table");
             }
+            int _status;
+            int.TryParse(OrderAsArrayOfStrings[STATUS], out _status);
+            if(!Enum.IsDefined(typeof(Status), _status))
+            {
+                throw new ArgumentException("Status is not an available choice", "status");
+            }
+            int _discount;
+            int.TryParse(OrderAsArrayOfStrings[DISCOUNT], out _discount);
+            if (!Enum.IsDefined(typeof(Discount), _discount))
+            {
+                throw new ArgumentException("Discount is not an available choice", "discount");
+            }
             number = AllOrders.Count + 1;
             client = OrderAsArrayOfStrings[CLIENT];
             info = OrderAsArrayOfStrings[INFO];
             price = _price;
             time = _time;
-            status = OrderAsArrayOfStrings[STATUS];
-            if(_table != -1)
+            status = (Status)_status;
+            discount = (Discount)_discount;
+            if (_table != -1)
             {
                 table = Table.AllTables.Find(t => t.GetNumber() == _table);
             }
@@ -141,7 +158,7 @@ namespace RestaurantObjects
             {
                 products_list = string.Join(", ", this.products.Select(r => r.GetShortDescription()));
             }
-            return $"Order #{number} placed by {client}\nInformation: {info}\nProducts: {products_list}\nTable: {(table!=null? table.GetNumber() : -1)}\nPrice: {price}$\nTime: {time} min\nStatus: {status}\n";
+            return $"Order #{number} placed by {client}\nInformation: {info}\nProducts: {products_list}\nTable: {(table!=null? table.GetNumber() : -1)}\nPrice: {price - ((float)discount * price / 100)}$ ({price}$ - {discount} Discount:{(int)discount}%)\nTime: {time} min\nStatus: {status}\n";
         }
 
         public string ConvertToFileString()
@@ -151,7 +168,7 @@ namespace RestaurantObjects
             {
                 sProducts = string.Join(",", products.Select(p => p.GetNumber()));
             }
-            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}", FILE_SEPARATOR, client, info, price.ToString(), time.ToString(), status, (table != null ? table.GetNumber() : -1).ToString(), sProducts);
+            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}", FILE_SEPARATOR, client, info, price.ToString(), time.ToString(), (int)status, (table != null ? table.GetNumber() : -1).ToString(), sProducts, (int)discount);
         }
     }
 }

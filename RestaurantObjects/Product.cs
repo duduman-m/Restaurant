@@ -46,7 +46,7 @@ namespace RestaurantObjects
             float _price, _weight, _time;
             if (ProductAsArrayOfStrings.Length != 6)
             {
-                throw new Exception("String must contain 5 fields");
+                throw new Exception("String must contain 6 fields");
             }
             if (!float.TryParse(ProductAsArrayOfStrings[PRICE], out _price))
             {
