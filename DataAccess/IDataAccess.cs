@@ -7,9 +7,12 @@ namespace DataAccess
     {
         void AddProduct(Product s);
         List<Product> GetProducts();
-        Product SearchByNumberP(int _number);
+
+        List<Product> FilterProducts(bool filter_name, bool filter_info, bool filter_category, string _name, string _info, string _category);
+        Product GetProduct(int _number);
         Product SearchByNameP(string _name);
         void UpdateProduct(Product _product);
+        void DeleteProduct(Product _product);
         void UpdateProductFile();
     }
 
@@ -17,8 +20,10 @@ namespace DataAccess
     {
         void AddCategory(Category s);
         List<Category> GetCategories();
-        Category SearchByNumberC(int _number);
+        List<Category> FilterCategories(bool filter_name, bool filter_info, string _name, string _info);
+        Category GetCategory(int _number);
         Category SearchByNameC(string _name);
+        void DeleteCategory(Category _category);
         void UpdateCategory(Category _category);
         void UpdateCategoryFile();
     }
@@ -27,7 +32,9 @@ namespace DataAccess
     {
         void AddTable(Table s);
         List<Table> GetTables();
-        Table SearchByNumberT(int _number);
+        List<Table> FilterTables(int _seats, bool _occupied, bool _reserved, bool status);
+        Table GetTable(int _number);
+        void DeleteTable(Table _table);
         void UpdateTable(Table _table);
         void UpdateTableFile();
     }
@@ -36,9 +43,12 @@ namespace DataAccess
     {
         void AddOrder(Order s);
         List<Order> GetOrders();
+        List<Order> FilterOrders(bool filter_client, bool filter_status, string _client, string _status);
+        Order GetOrder(int _number);
         Order SearchByClientO(string _client);
         Order SearchByNumberO(int _number);
         void UpdateOrder(Order _order);
+        void DeleteOrder(Order _order);
         void UpdateOrderFile();
     }
 }

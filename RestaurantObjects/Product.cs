@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
+using System.IO;
 
 namespace RestaurantObjects
 {
@@ -15,24 +17,23 @@ namespace RestaurantObjects
         private const int TIME = 4;
         private const int CATEGORY = 5;
 
-        public static List<Product> AllProducts = new List<Product>();
-        int number { set; get; }
-        string name { set; get; }
-        string info { set; get; }
-        float price { set; get; }
-        float weight { set; get; } //In grames
-        float time_to_prepare { set; get; } //In minutes
+        public int number { set; get; }
+        public string name { private set; get; }
+        public string info { private set; get; }
+        public float price { private set; get; }
+        public float weight { private set; get; } //In grams
+        public float time_to_prepare { private set; get; } //In minutes
 
         Category category;
 
         //Default Constructor
         public Product()
         {
-            number = AllProducts.Count + 1;
+            number = Log.AllProducts.Count + 1;
             name = info = "Undefined";
             price = weight = time_to_prepare = 0;
             category = null;
-            AllProducts.Add(this);
+            Log.AllProducts.Add(this);
         }
 
         /* 
@@ -60,43 +61,19 @@ namespace RestaurantObjects
             {
                 throw new ArgumentException("Time is not a number", "time");
             }
-            number = AllProducts.Count + 1;
+            number = Log.AllProducts.Count + 1;
             name = ProductAsArrayOfStrings[NAME];
             info = ProductAsArrayOfStrings[INFO];
             price = _price;
             weight = _weight;
             time_to_prepare = _time;
-            Category temp = Category.AllCategories.Find(c => c.GetName() == ProductAsArrayOfStrings[CATEGORY]);
+            Category temp = Log.AllCategories.Find(c => c.name.Equals(ProductAsArrayOfStrings[CATEGORY]));
             if(temp != null)
             {
                 this.SetCategory(temp);
                 temp = null;
             }
-            AllProducts.Add(this);
-        }
-
-
-        //Get number
-        public int GetNumber()
-        {
-            return number;
-        }
-
-        public string GetName()
-        {
-            return name;
-        }
-
-        //Get time it takes to prepare product
-        public float GetTime()
-        {
-            return time_to_prepare;
-        }
-
-        //Get price
-        public float GetPrice()
-        {
-            return price;
+            Log.AllProducts.Add(this);
         }
 
         //Get short description
@@ -112,21 +89,33 @@ namespace RestaurantObjects
             category = _category;
         }
 
-        public void SetName(string _name)
+        public bool CheckCategory(Category _category)
         {
-            name = _name;
+            if (category.name.Equals(_category.name))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string GetCategoryName()
+        {
+            return category.name;
         }
 
         //Compare 2 products
         public string CompareProductPrices(Product _product)
         {
-            if(this.GetPrice() == _product.GetPrice())
+            if(this.price == _product.price)
             {
                 return "Products prices are equal.";
             }
             else
             {
-                if(this.GetPrice() < _product.GetPrice())
+                if(this.price < _product.price)
                 {
                     return $"{this.name} is cheaper then {_product.name}.";
                 }
@@ -138,14 +127,30 @@ namespace RestaurantObjects
 
         }
 
+        public void SetFields(string _name, string _info, Category c, float _price, float _weight, float _time)
+        {
+            name = _name;
+            info = _info;
+            category = c;
+            price = _price;
+            weight = _weight;
+            time_to_prepare = _time;
+        }
+
         public string ConvertToString()
         {
-            return $"Product {name}(#{number}) - {info}\nCategory: {(category != null ? category.GetName() : "Not set")}\nPrice: {price}$\nWeight: {weight} g\nTime to prepare: {time_to_prepare} min\n";
+            return $"Product {name}(#{number}) - {info}\nCategory: {(category != null ? category.name : "Not set")}\nPrice: {price}$\nWeight: {weight} g\nTime to prepare: {time_to_prepare} min\n";
         }
+
         public string ConvertToFileString()
         {
             return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}",
-                FILE_SEPARATOR, (name ?? " UNDEFINED "), (info ?? " UNDEFINED "), price.ToString(), weight.ToString(), time_to_prepare.ToString(), category.GetName());
+                FILE_SEPARATOR, (name ?? " UNDEFINED "), (info ?? " UNDEFINED "), price.ToString(), weight.ToString(), time_to_prepare.ToString(), category.name);
+        }
+
+        public string ConvertToListString(int max_name, int max_category_name)
+        {
+            return $"{number,-10}{name.PadRight(max_name)}{(category != null ? category.name : "").PadRight(max_category_name)}{price,-10}{weight,-10}{time_to_prepare,-20}";
         }
     }
 }

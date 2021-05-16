@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace DataAccess
 {
@@ -13,6 +14,14 @@ namespace DataAccess
         {
             FileName = _FileName;
             using (Stream sFisierText = File.Open(FileName, FileMode.OpenOrCreate)) { };
+        }
+
+        private void UpgradeAllFiles()
+        {
+            UpdateTableFile();
+            UpdateCategoryFile();
+            UpdateProductFile();
+            UpdateOrderFile();
         }
 
         public void AddProduct(Product p)
@@ -63,25 +72,51 @@ namespace DataAccess
             return products;
         }
 
-        public Product SearchByNumberP(int _number)
+        public List<Product> FilterProducts(bool filter_name, bool filter_info, bool filter_category, string _name, string _info, string _category)
         {
-            return Product.AllProducts.Find(c => c.GetNumber() == _number);
+            List<Product> filtered = Log.AllProducts;
+            if (filter_name)
+            {
+                filtered = filtered.FindAll(c => c.name.ToLower().Contains(_name.ToLower()));
+            }
+            if (filter_info)
+            {
+                filtered = filtered.FindAll(c => c.info.ToLower().Contains(_info.ToLower()));
+            }
+
+            if (filter_category)
+            {
+                Category cat = SearchByNameC(_category);
+                filtered = filtered.FindAll(c => c.CheckCategory(cat));
+            }
+            return filtered;
+        }
+
+        public Product GetProduct(int _number)
+        {
+            return Log.AllProducts.Find(c => c.number == _number);
         }
 
         public Product SearchByNameP(string _name)
         {
-            return Product.AllProducts.Find(c => c.GetName() == _name);
+            return Log.AllProducts.Find(c => c.name == _name);
         }
 
         public void UpdateProduct(Product _product)
         {
-            for (int i = 0; i < Product.AllProducts.Count; i++)
+            for (int i = 0; i < Log.AllProducts.Count; i++)
             {
-                if (Product.AllProducts[i] == _product)
+                if (Log.AllProducts[i] == _product)
                 {
-                    Product.AllProducts[i] = _product;
+                    Log.AllProducts[i] = _product;
                 }
             }
+            UpdateProductFile();
+        }
+
+        public void DeleteProduct(Product _product)
+        {
+            Log.AllProducts.Remove(_product);
             UpdateProductFile();
         }
 
@@ -92,7 +127,7 @@ namespace DataAccess
                 File.Delete(FileName);
                 using (StreamWriter swFisierText = new StreamWriter(FileName, true))
                 {
-                    foreach (Product p in Product.AllProducts)
+                    foreach (Product p in Log.AllProducts)
                     {
                         swFisierText.WriteLine(p.ConvertToFileString());
                     }
@@ -156,23 +191,43 @@ namespace DataAccess
             return categories;
         }
 
-        public Category SearchByNumberC(int _number)
+        public List<Category> FilterCategories(bool filter_name, bool filter_info, string _name, string _info)
         {
-            return Category.AllCategories.Find(c => c.GetNumber() == _number);
+            List<Category> filtered = Log.AllCategories;
+            if(filter_name)
+            {
+                filtered = filtered.FindAll(c => c.name.ToLower().Contains(_name.ToLower()));
+            }
+            if(filter_info)
+            {
+                filtered = filtered.FindAll(c => c.info.ToLower().Contains(_info.ToLower()));
+            }
+            return filtered;
         }
 
         public Category SearchByNameC(string _name)
         {
-            return Category.AllCategories.Find(c => c.GetName() == _name);
+            return Log.AllCategories.Find(c => c.name.Equals(_name));
+        }
+
+        public Category GetCategory(int _number)
+        {
+            return Log.AllCategories.Find(c => c.number == _number);
+        }
+
+        public void DeleteCategory(Category _category)
+        {
+            Log.AllCategories.Remove(_category);
+            UpdateCategoryFile();
         }
 
         public void UpdateCategory(Category _category)
         {
-            for (int i = 0; i < Category.AllCategories.Count; i++)
+            for (int i = 0; i < Log.AllCategories.Count; i++)
             {
-                if (Category.AllCategories[i] == _category)
+                if (Log.AllCategories[i] == _category)
                 {
-                    Category.AllCategories[i] = _category;
+                    Log.AllCategories[i] = _category;
                 }
             }
             UpdateCategoryFile();
@@ -185,7 +240,7 @@ namespace DataAccess
                 File.Delete(FileName);
                 using (StreamWriter swFisierText = new StreamWriter(FileName, true))
                 {
-                    foreach (Category c in Category.AllCategories)
+                    foreach (Category c in Log.AllCategories)
                     {
                         swFisierText.WriteLine(c.ConvertToFileString());
                     }
@@ -249,18 +304,38 @@ namespace DataAccess
             return tables;
         }
 
-        public Table SearchByNumberT(int _number)
+        public List<Table> FilterTables(int _seats, bool _ocupied, bool _reserved, bool status)
         {
-            return Table.AllTables.Find(t => t.GetNumber() == _number);
+            List<Table> filtered = Log.AllTables;
+            if (_seats != -1)
+            {
+                filtered = filtered.FindAll(t => t.seats == _seats);
+            }
+            if(status)
+            {
+                filtered = filtered.FindAll(t => (t.occupied == _ocupied && t.reserved == _reserved));
+            }
+            return filtered;
+        }
+
+        public Table GetTable(int _number)
+        {
+            return Log.AllTables.Find(t => t.number == _number);
+        }
+
+        public void DeleteTable(Table _table)
+        {
+            Log.AllTables.Remove(_table);
+            UpdateTableFile();
         }
 
         public void UpdateTable(Table _table)
         {
-            for (int i = 0; i < Table.AllTables.Count; i++)
+            for (int i = 0; i < Log.AllTables.Count; i++)
             {
-                if (Table.AllTables[i] == _table)
+                if (Log.AllTables[i] == _table)
                 {
-                    Table.AllTables[i] = _table;
+                    Log.AllTables[i] = _table;
                 }
             }
             UpdateTableFile();
@@ -273,7 +348,7 @@ namespace DataAccess
                 File.Delete(FileName);
                 using (StreamWriter swFisierText = new StreamWriter(FileName, true))
                 {
-                    foreach (Table t in Table.AllTables)
+                    foreach (Table t in Log.AllTables)
                     {
                         swFisierText.WriteLine(t.ConvertToFileString());
                     }
@@ -337,25 +412,50 @@ namespace DataAccess
             return orders;
         }
 
+        public List<Order> FilterOrders(bool filter_client, bool filter_status, string _client, string _status)
+        {
+            List<Order> filtered = Log.AllOrders;
+            if (filter_client)
+            {
+                filtered = filtered.FindAll(o => o.client.ToLower().Contains(_client.ToLower()));
+            }
+            if (filter_status)
+            {
+                filtered = filtered.FindAll(o => o.status.ToString().Equals(_status));
+            }
+            return filtered;
+        }
+
+        public Order GetOrder(int _number)
+        {
+            return Log.AllOrders.Find(o => o.number == _number);
+        }
+
         public Order SearchByClientO(string _client)
         {
-            return Order.AllOrders.Find(o => o.GetClient() == _client);
+            return Log.AllOrders.Find(o => o.client == _client);
         }
 
         public Order SearchByNumberO(int _number)
         {
-            return Order.AllOrders.Find(o => o.GetNumber() == _number);
+            return Log.AllOrders.Find(o => o.number == _number);
         }
 
         public void UpdateOrder(Order _order)
         {
-            for (int i = 0; i < Order.AllOrders.Count; i++)
+            for (int i = 0; i < Log.AllOrders.Count; i++)
             {
-                if (Order.AllOrders[i] == _order)
+                if (Log.AllOrders[i] == _order)
                 {
-                    Order.AllOrders[i] = _order;
+                    Log.AllOrders[i] = _order;
                 }
             }
+            UpdateOrderFile();
+        }
+
+        public void DeleteOrder(Order _order)
+        {
+            Log.AllOrders.Remove(_order);
             UpdateOrderFile();
         }
 
@@ -366,7 +466,7 @@ namespace DataAccess
                 File.Delete(FileName);
                 using (StreamWriter swFisierText = new StreamWriter(FileName, true))
                 {
-                    foreach (Order o in Order.AllOrders)
+                    foreach (Order o in Log.AllOrders)
                     {
                         swFisierText.WriteLine(o.ConvertToFileString());
                     }

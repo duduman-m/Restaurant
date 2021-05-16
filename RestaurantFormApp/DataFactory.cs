@@ -1,7 +1,7 @@
 ﻿using DataAccess;
 using System.Configuration;
 
-namespace RestaurantConsole
+namespace RestaurantFormApp
 {
     class ProductDataFactory
     {

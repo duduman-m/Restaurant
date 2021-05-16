@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace RestaurantObjects
 {
@@ -12,19 +11,18 @@ namespace RestaurantObjects
         private const int PRODUCTS_NUMBER = 1;
         private const int INFO = 2;
 
-        public static List<Category> AllCategories = new List<Category>();
-        int products_number { get; set; } = 0;
-        int number { set; get; }
-        string name { set; get; }
-        string info { set; get; }
+        public int products_number { private set; get; } = 0;
+        public int number { private set; get; }
+        public string name { private set; get; }
+        public string info { private set; get; }
 
         //Default Constructor
         public Category()
         {
-            number = AllCategories.Count + 1;
+            number = Log.AllCategories.Count + 1;
             products_number = 0;
             name = info = "Undefined";
-            AllCategories.Add(this);
+            Log.AllCategories.Add(this);
         }
 
         /* 
@@ -39,7 +37,7 @@ namespace RestaurantObjects
             {
                 throw new Exception("String must contain 3 fields");
             }
-            number = AllCategories.Count + 1;
+            number = Log.AllCategories.Count + 1;
             name = CategoryAsArrayOfStrings[NAME];
             if(int.TryParse(CategoryAsArrayOfStrings[PRODUCTS_NUMBER], out int n))
             {
@@ -50,24 +48,24 @@ namespace RestaurantObjects
                 throw new ArgumentException("Number of products is not int type", "products_number");
             }
             info = CategoryAsArrayOfStrings[INFO];
-            AllCategories.Add(this);
-        }
-
-        //Get name of category
-        public string GetName()
-        {
-            return name;
-        }
-
-        public int GetNumber()
-        {
-            return number;
+            Log.AllCategories.Add(this);
         }
 
         //Increase number of products
         public void IncreaseProductsNumber()
         {
             products_number++;
+        }
+
+        public void ResetProductsNumber()
+        {
+            products_number = 0;
+        }
+
+        public void SetFields(string _name, string _info)
+        {
+            name = _name;
+            info = _info;
         }
 
         public string ConvertToString()
@@ -78,6 +76,11 @@ namespace RestaurantObjects
         public string ConvertToFileString()
         {
             return string.Format("{1}{0}{2}{0}{3}", FILE_SEPARATOR, (name ?? " UNDEFINED "), products_number.ToString(), (info ?? " UNDEFINED "));
+        }
+
+        public string ConvertToListString(int max_name)
+        {
+            return $"{number,-10}{name.PadRight(max_name)}{products_number,-20}";
         }
     }
 }

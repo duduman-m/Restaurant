@@ -18,14 +18,13 @@ namespace RestaurantObjects
         private const int PRODUCTS = 6;
         private const int DISCOUNT = 7;
 
-        public static List<Order> AllOrders = new List<Order>();
-        int number { set; get; }
-        string client { set; get; }
-        string info { set; get; }
-        float price { set; get; }
-        float time { set; get; } //In minutes
-        Status status { set; get; }
-        Discount discount { set; get; }
+        public int number { private set; get; }
+        public string client { private set; get; }
+        public string info { private set; get; }
+        public float price { private set; get; }
+        public float time { private set; get; } //In minutes
+        public Status status { private set; get; }
+        public Discount discount { private set; get; }
 
         Table table;
         Product[] products;
@@ -33,20 +32,18 @@ namespace RestaurantObjects
         //Default Constructor
         public Order()
         {
-            number = AllOrders.Count + 1;
+            number = Log.AllOrders.Count + 1;
             client = info = "Undefined";
             status = 0;
             discount = 0;
             price = time = 0;
             table = null;
             Array.Resize(ref products, 0);
-            AllOrders.Add(this);
+            Log.AllOrders.Add(this);
         }
 
         /* 
             Constructor using string with information
-            Order of information { client -> info -> status }
-            Example: "George,Wants the soda with ice,10,Done"
         */
         public Order(string OrderAsString)
         {
@@ -82,16 +79,15 @@ namespace RestaurantObjects
             {
                 throw new ArgumentException("Discount is not an available choice", "discount");
             }
-            number = AllOrders.Count + 1;
+            number = Log.AllOrders.Count + 1;
             client = OrderAsArrayOfStrings[CLIENT];
             info = OrderAsArrayOfStrings[INFO];
-            price = _price;
-            time = _time;
+            price = time = 0;
             status = (Status)_status;
             discount = (Discount)_discount;
             if (_table != -1)
             {
-                table = Table.AllTables.Find(t => t.GetNumber() == _table);
+                table = Log.AllTables.Find(t => t.number == _table);
             }
             else
             {
@@ -101,15 +97,37 @@ namespace RestaurantObjects
             Array.Resize(ref products, 0);
             if (products_numbers.Length > 0)
             {
-                foreach (Product p in Product.AllProducts)
+                foreach (Product p in Log.AllProducts)
                 {
-                    if (products_numbers.Contains(p.GetNumber()))
+                    if (products_numbers.Contains(p.number))
                     {
                         this.AddProduct(p);
                     }
                 }
             }
-            AllOrders.Add(this);
+            Log.AllOrders.Add(this);
+        }
+
+        public void SetFields(string _client, string _info, string _status, string _discount, Table t, string _products)
+        {
+            client = _client;
+            info = _info;
+            price = time = 0;
+            status = (Status)Enum.Parse(typeof(Status), _status);
+            discount = (Discount)Enum.Parse(typeof(Discount), _discount);
+            SetTable(t);
+            int[] products_numbers = Array.ConvertAll(_products.Split(','), int.Parse);
+            Array.Resize(ref products, 0);
+            if (products_numbers.Length > 0)
+            {
+                foreach (Product p in Log.AllProducts)
+                {
+                    if (products_numbers.Contains(p.number))
+                    {
+                        this.AddProduct(p);
+                    }
+                }
+            }
         }
 
         //Set table for order
@@ -119,13 +137,23 @@ namespace RestaurantObjects
             table = _table;
         }
 
+        public bool CheckTable(Table _table)
+        {
+            return table.number.Equals(_table.number);
+        }
+
+        public int GetTableNumber()
+        {
+            return table.number;
+        }
+
         //Add product to order
         public void AddProduct(Product _product)
         {
             Array.Resize(ref products, products.Length + 1);
             products[products.Length - 1] = _product;
-            time += _product.GetTime();
-            price += _product.GetPrice();
+            time += _product.time_to_prepare;
+            price += _product.price;
         }
 
         //Add multiple products to order
@@ -136,19 +164,14 @@ namespace RestaurantObjects
             foreach (Product _product in _products)
             {
                 products[initial++] = _product;
-                time += _product.GetTime();
-                price += _product.GetPrice();
+                time += _product.time_to_prepare;
+                price += _product.price;
             }
         }
 
-        public string GetClient()
+        public bool CheckProduct(Product p)
         {
-            return client;
-        }
-
-        public int GetNumber()
-        {
-            return number;
+            return products.Count(pr => pr.number.Equals(p.number)) != 0;
         }
 
         public string ConvertToString()
@@ -158,7 +181,7 @@ namespace RestaurantObjects
             {
                 products_list = string.Join(", ", this.products.Select(r => r.GetShortDescription()));
             }
-            return $"Order #{number} placed by {client}\nInformation: {info}\nProducts: {products_list}\nTable: {(table!=null? table.GetNumber() : -1)}\nPrice: {price - ((float)discount * price / 100)}$ ({price}$ - {discount} Discount:{(int)discount}%)\nTime: {time} min\nStatus: {status}\n";
+            return $"Order #{number} placed by {client}\nInformation: {info}\nProducts: {products_list}\nTable: {(table!=null? table.number : -1)}\nPrice: {price - ((float)discount * price / 100)}$ ({price}$ - {discount} Discount:{(int)discount}%)\nTime: {time} min\nStatus: {status}\n";
         }
 
         public string ConvertToFileString()
@@ -166,9 +189,14 @@ namespace RestaurantObjects
             string sProducts = string.Empty;
             if (products != null)
             {
-                sProducts = string.Join(",", products.Select(p => p.GetNumber()));
+                sProducts = string.Join(",", products.Select(p => p.number));
             }
-            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}", FILE_SEPARATOR, client, info, price.ToString(), time.ToString(), (int)status, (table != null ? table.GetNumber() : -1).ToString(), sProducts, (int)discount);
+            return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}", FILE_SEPARATOR, client, info, price.ToString(), time.ToString(), (int)status, (table != null ? table.number : -1).ToString(), sProducts, (int)discount);
+        }
+
+        public string ConvertToListString(int max_client)
+        {
+            return $"{number,-10}{client.PadRight(max_client)}{table.number,-10}{status,-20}{price,-10}{discount,-20}{time,-20}";
         }
     }
 }

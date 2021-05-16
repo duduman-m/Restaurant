@@ -8,20 +8,20 @@ namespace RestaurantConsole
     {
         static void Main(string[] args)
         {
-            IDataAccessProducts adminProducts = DataFactory.GetProductsDataAccess();
-            IDataAccessCategories adminCategories = DataFactory.GetCategoriesDataAccess();
-            IDataAccessTables adminTables = DataFactory.GetTablesDataAccess();
-            IDataAccessOrders adminOrders = DataFactory.GetOrdersDataAccess();
+            IDataAccessProducts adminProducts = ProductDataFactory.GetProductsDataAccess();
+            IDataAccessCategories adminCategories = CategoryDataFactory.GetCategoriesDataAccess();
+            IDataAccessTables adminTables = TableDataFactory.GetTablesDataAccess();
+            IDataAccessOrders adminOrders = OrderDataFactory.GetOrdersDataAccess();
 
-            Table.AllTables = adminTables.GetTables();
-            Category.AllCategories = adminCategories.GetCategories();
-            Product.AllProducts = adminProducts.GetProducts();
-            Order.AllOrders = adminOrders.GetOrders();
+            Log.AllTables = adminTables.GetTables();
+            Log.AllCategories = adminCategories.GetCategories();
+            Log.AllProducts = adminProducts.GetProducts();
+            //Log.AllOrders = adminOrders.GetOrders();
 
             //Table test
             Console.WriteLine("\n####### Table test #########");
-            Console.WriteLine($"Number of tables: {Table.AllTables.Count}\n");
-            foreach (Table t in Table.AllTables)
+            Console.WriteLine($"Number of tables: {Log.AllTables.Count}\n");
+            foreach (Table t in Log.AllTables)
             {
                 Console.WriteLine(t.ConvertToString());
             }
@@ -29,26 +29,25 @@ namespace RestaurantConsole
 
             //Product test
             Console.WriteLine("\n####### Product test #########");
-            Console.WriteLine($"Number of products: {Product.AllProducts.Count}\n");
-            foreach(Product p in Product.AllProducts)
+            Console.WriteLine($"Number of products: {Log.AllProducts.Count}\n");
+            foreach(Product p in Log.AllProducts)
             {
                 Console.WriteLine(p.ConvertToString());
             }
-            Product.AllProducts[0].SetName("Pizza Capriciosa");
-            adminProducts.UpdateProduct(Product.AllProducts[0]);
+            adminProducts.UpdateProduct(Log.AllProducts[0]);
 
             //Category test part 2
             Console.WriteLine("\n####### Category test #########");
-            Console.WriteLine($"Number of categories: {Category.AllCategories.Count}\n");
-            foreach (Category c in Category.AllCategories)
+            Console.WriteLine($"Number of categories: {Log.AllCategories.Count}\n");
+            foreach (Category c in Log.AllCategories)
             {
                 Console.WriteLine(c.ConvertToString());
             }
 
             //Order test
             Console.WriteLine("\n####### Order test #########");
-            Console.WriteLine($"Number of orders: {Order.AllOrders.Count}\n");
-            foreach (Order o in Order.AllOrders)
+            Console.WriteLine($"Number of orders: {Log.AllOrders.Count}\n");
+            foreach (Order o in Log.AllOrders)
             {
                 Console.WriteLine(o.ConvertToString());
             }

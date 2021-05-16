@@ -13,34 +13,33 @@ namespace RestaurantObjects
         private const int OCUPIED = 1;
         private const int RESERVED = 2;
 
-        public static List<Table> AllTables = new List<Table>();
-        int number { get; set; }
-        int seats { get; set; }
-        bool ocupied { get; set; }
-        bool reserved { get; set; }
+        public int number { get; private set; }
+        public int seats { get; private set; }
+        public bool occupied { get; private set; }
+        public bool reserved { get; private set; }
 
         //Default Constructor
         public Table()
         {
-            number = AllTables.Count + 1;
+            number = Log.AllTables.Count + 1;
             seats = 0;
-            ocupied = false;
+            occupied = false;
             reserved = false;
-            AllTables.Add(this);
+            Log.AllTables.Add(this);
         }
 
         //Default Constructor with number of seats
         public Table(int _seats)
         {
-            number = AllTables.Count + 1;
+            number = Log.AllTables.Count + 1;
             seats = _seats;
-            ocupied = reserved = false;
-            AllTables.Add(this);
+            occupied = reserved = false;
+            Log.AllTables.Add(this);
         }
 
         /* 
             Constructor using string with information
-            Order of information { seats -> ocupied -> reserved }
+            Order of information { seats -> occupied -> reserved }
             Example: "4;yes;no"
         */
         public Table(string TableAsString)
@@ -51,42 +50,49 @@ namespace RestaurantObjects
                 throw new Exception("String must contain 3 fields");
             }
             int _seats;
-            if (!int.TryParse(TableAsArrayOfStrings[0], out _seats))
+            if (!int.TryParse(TableAsArrayOfStrings[SEATS], out _seats))
             {
                 throw new ArgumentException("Number of seats is not a number", "seats");
             }
             string[] choices = { "yes", "no" };
-            TableAsArrayOfStrings[1] = TableAsArrayOfStrings[1].ToLower();
-            TableAsArrayOfStrings[2] = TableAsArrayOfStrings[2].ToLower();
-            if (choices.Contains(TableAsArrayOfStrings[1]) && choices.Contains(TableAsArrayOfStrings[2]))
+            TableAsArrayOfStrings[1] = TableAsArrayOfStrings[OCUPIED].ToLower();
+            TableAsArrayOfStrings[2] = TableAsArrayOfStrings[RESERVED].ToLower();
+            if (choices.Contains(TableAsArrayOfStrings[OCUPIED]) && choices.Contains(TableAsArrayOfStrings[RESERVED]))
             {
-                ocupied = TableAsArrayOfStrings[1] == "yes" ? true : false;
-                reserved = TableAsArrayOfStrings[2] == "yes" ? true : false;
+                occupied = TableAsArrayOfStrings[OCUPIED] == "yes" ? true : false;
+                reserved = TableAsArrayOfStrings[RESERVED] == "yes" ? true : false;
             }
             else
             {
-                throw new ArgumentException("Ocupied and reserved can only be yes/no", "ocupied/reserved");
+                throw new ArgumentException("Ocupied and reserved can only be yes/no", "occupied/reserved");
             }
             seats = _seats;
-            number = AllTables.Count + 1;
-            AllTables.Add(this);
+            number = Log.AllTables.Count + 1;
+            Log.AllTables.Add(this);
         }
 
-        public int GetNumber()
+        public void SetFields(int _seats, bool _occupied, bool _reserved)
         {
-            return number;
+            seats = _seats;
+            occupied = _occupied;
+            reserved = _reserved;
         }
 
-        //Set table as ocupied
+        public void DecreaseNumber()
+        {
+            number--;
+        }
+
+        //Set table as occupied
         public void SetAsOcupied()
         {
-            ocupied = true;
+            occupied = true;
         }
 
-        //Set table as not ocupied
+        //Set table as not occupied
         public void SetAsNotOcupied()
         {
-            ocupied = false;
+            occupied = false;
         }
 
         //Set table as reserved
@@ -103,12 +109,17 @@ namespace RestaurantObjects
 
         public string ConvertToString()
         {
-            return $"Table #{number} has {seats} seats, is {(ocupied ? "ocupied" : "available")}, and is {(reserved ? "reserved" : "not reserved")}.\n";
+            return $"Table #{number} has {seats} seats, is {(occupied ? "occupied" : "available")}, and is {(reserved ? "reserved" : "not reserved")}.\n";
         }
 
         public string ConvertToFileString()
         {
-            return string.Format("{1}{0}{2}{0}{3}", FILE_SEPARATOR, seats.ToString(), ocupied ? "yes": "no", reserved ? "yes": "no");
+            return string.Format("{1}{0}{2}{0}{3}", FILE_SEPARATOR, seats.ToString(), occupied ? "yes": "no", reserved ? "yes": "no");
+        }
+
+        public string ConvertToListString()
+        {
+            return $"{number,-10}{seats,-10}{occupied,-10}{reserved,-10}";
         }
     }
 }
