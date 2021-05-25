@@ -38,6 +38,8 @@ namespace RestaurantFormApp
 
         Timer timer = new Timer();
 
+        public DateTime LastSync;
+
         //Constructor
 
         public RestaurantForm()
@@ -60,6 +62,8 @@ namespace RestaurantFormApp
                 ComboOrderDiscount.Items.Add(s);
             }
             ComboOrderDiscount.SelectedItem = "None";
+            LastSync = DateTime.Now;
+            TxtLastSync.Text = LastSync.ToString();
         }
 
         //Timer methods
@@ -831,6 +835,8 @@ namespace RestaurantFormApp
         {
             Log.AllTables.Clear();
             Log.AllTables = adminTables.GetTables();
+            LastSync = DateTime.Now;
+            TxtLastSync.Text = LastSync.ToString();
             ListTables.Items.Clear();
             ListTables.Items.Add($"{"Number",-10}{"Seats",-10}{"Occupied",-10}{"Reserved",-10}");
             ComboOrderTable.Items.Clear();
@@ -863,6 +869,8 @@ namespace RestaurantFormApp
         {
             Log.AllCategories.Clear();
             Log.AllCategories = adminCategories.GetCategories();
+            LastSync = DateTime.Now;
+            TxtLastSync.Text = LastSync.ToString();
             foreach (Category c in Log.AllCategories)
             {
                 c.ResetProductsNumber();
@@ -902,6 +910,8 @@ namespace RestaurantFormApp
         {
             Log.AllProducts.Clear();
             Log.AllProducts = adminProducts.GetProducts();
+            LastSync = DateTime.Now;
+            TxtLastSync.Text = LastSync.ToString();
             ListProducts.Items.Clear();
             int max_product_name = Log.GetMaxLengthProductName();
             int max_category_name = Log.GetMaxLengthCategoryName();
@@ -934,6 +944,8 @@ namespace RestaurantFormApp
         {
             Log.AllOrders.Clear();
             Log.AllOrders = adminOrders.GetOrders();
+            LastSync = DateTime.Now;
+            TxtLastSync.Text = LastSync.ToString();
             int max_client = Log.GetMaxLengthOrderClient();
             ListOrders.Items.Clear();
             ListOrders.Items.Add($"{"Number",-10}{"Client".PadRight(max_client)}{"Table",-10}{"Status",-20}{"Price",-10}{"Discount",-20}{"Time to prepare",-20}");
@@ -1278,5 +1290,12 @@ namespace RestaurantFormApp
             }
         }
 
+        private void BtnFeedbackForm_Click(object sender, EventArgs e)
+        {
+            FeedbackForm newForm = new FeedbackForm();
+            this.Hide();
+            newForm.ShowDialog();
+            this.Show();
+        }
     }
 }

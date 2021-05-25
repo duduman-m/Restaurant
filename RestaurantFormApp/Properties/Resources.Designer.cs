@@ -124,6 +124,16 @@ namespace RestaurantFormApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap star {
+            get {
+                object obj = ResourceManager.GetObject("star", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap table_top_view_realistic_png_clipart_clipartlycom_png_table_topview_2400_1680 {
             get {
                 object obj = ResourceManager.GetObject("table-top-view-realistic-png-clipart-clipartlycom-png-table-topview-2400_1680", resourceCulture);

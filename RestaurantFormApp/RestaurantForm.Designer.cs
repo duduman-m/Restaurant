@@ -31,6 +31,29 @@ namespace RestaurantFormApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RestaurantForm));
             this.TbAdd = new System.Windows.Forms.TabControl();
+            this.AddOrder = new System.Windows.Forms.TabPage();
+            this.BtnDeleteOrder = new System.Windows.Forms.Button();
+            this.BtnUpdateOrder = new System.Windows.Forms.Button();
+            this.ErrOrderProducts = new System.Windows.Forms.Label();
+            this.LbOrderMessage = new System.Windows.Forms.Label();
+            this.BtnAddOrder = new System.Windows.Forms.Button();
+            this.ComboOrderProducts = new System.Windows.Forms.CheckedListBox();
+            this.LbOrderProducts = new System.Windows.Forms.Label();
+            this.ErrOrderTable = new System.Windows.Forms.Label();
+            this.ComboOrderTable = new System.Windows.Forms.ComboBox();
+            this.LbOrderTable = new System.Windows.Forms.Label();
+            this.ErrOrderDiscount = new System.Windows.Forms.Label();
+            this.ComboOrderDiscount = new System.Windows.Forms.ComboBox();
+            this.LbOrderDiscount = new System.Windows.Forms.Label();
+            this.ErrOrderStatus = new System.Windows.Forms.Label();
+            this.ComboOrderStatus = new System.Windows.Forms.ComboBox();
+            this.LbOrderStatus = new System.Windows.Forms.Label();
+            this.ErrOrderInfo = new System.Windows.Forms.Label();
+            this.TxtOrderInfo = new System.Windows.Forms.RichTextBox();
+            this.LbOrderInfo = new System.Windows.Forms.Label();
+            this.ErrOrderClient = new System.Windows.Forms.Label();
+            this.LbOrderClient = new System.Windows.Forms.Label();
+            this.TxtOrderClient = new System.Windows.Forms.TextBox();
             this.AddProduct = new System.Windows.Forms.TabPage();
             this.LbProductMessage = new System.Windows.Forms.Label();
             this.BtnDeleteProduct = new System.Windows.Forms.Button();
@@ -76,29 +99,16 @@ namespace RestaurantFormApp
             this.LbOcuppied = new System.Windows.Forms.Label();
             this.LbReserved = new System.Windows.Forms.Label();
             this.LbSeats = new System.Windows.Forms.Label();
-            this.AddOrder = new System.Windows.Forms.TabPage();
-            this.LbOrderMessage = new System.Windows.Forms.Label();
-            this.BtnAddOrder = new System.Windows.Forms.Button();
-            this.ComboOrderProducts = new System.Windows.Forms.CheckedListBox();
-            this.LbOrderProducts = new System.Windows.Forms.Label();
-            this.ErrOrderTable = new System.Windows.Forms.Label();
-            this.ComboOrderTable = new System.Windows.Forms.ComboBox();
-            this.LbOrderTable = new System.Windows.Forms.Label();
-            this.ErrOrderDiscount = new System.Windows.Forms.Label();
-            this.ComboOrderDiscount = new System.Windows.Forms.ComboBox();
-            this.LbOrderDiscount = new System.Windows.Forms.Label();
-            this.ErrOrderStatus = new System.Windows.Forms.Label();
-            this.ComboOrderStatus = new System.Windows.Forms.ComboBox();
-            this.LbOrderStatus = new System.Windows.Forms.Label();
-            this.ErrOrderInfo = new System.Windows.Forms.Label();
-            this.TxtOrderInfo = new System.Windows.Forms.RichTextBox();
-            this.LbOrderInfo = new System.Windows.Forms.Label();
-            this.ErrOrderClient = new System.Windows.Forms.Label();
-            this.LbOrderClient = new System.Windows.Forms.Label();
-            this.TxtOrderClient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.LblLog = new System.Windows.Forms.Label();
             this.TpOrders = new System.Windows.Forms.TabPage();
+            this.ComboFilterOrderStatus = new System.Windows.Forms.ComboBox();
+            this.TxtFilterOrderClient = new System.Windows.Forms.TextBox();
+            this.ChxFilterOrderStatus = new System.Windows.Forms.CheckBox();
+            this.ChxFilterOrderClient = new System.Windows.Forms.CheckBox();
+            this.BtnFilterOrders = new System.Windows.Forms.Button();
+            this.LbResetOrders = new System.Windows.Forms.Label();
+            this.ListOrders = new System.Windows.Forms.ListBox();
             this.TpTables = new System.Windows.Forms.TabPage();
             this.ListTables = new System.Windows.Forms.ListBox();
             this.NumFilterSeats = new System.Windows.Forms.NumericUpDown();
@@ -108,7 +118,6 @@ namespace RestaurantFormApp
             this.LbResetTables = new System.Windows.Forms.Label();
             this.ChxFilterReserved = new System.Windows.Forms.CheckBox();
             this.ChxFilterOcuppied = new System.Windows.Forms.CheckBox();
-            this.RefreshTables = new System.Windows.Forms.PictureBox();
             this.TpCategories = new System.Windows.Forms.TabPage();
             this.ChxCategoryInfo = new System.Windows.Forms.CheckBox();
             this.ChxCategoryName = new System.Windows.Forms.CheckBox();
@@ -116,7 +125,6 @@ namespace RestaurantFormApp
             this.TxtFilterCategoryInfo = new System.Windows.Forms.TextBox();
             this.TxtFilterCategoryName = new System.Windows.Forms.TextBox();
             this.LbResetCategories = new System.Windows.Forms.Label();
-            this.RefreshCategories = new System.Windows.Forms.PictureBox();
             this.ListCategories = new System.Windows.Forms.ListBox();
             this.TpProducts = new System.Windows.Forms.TabPage();
             this.BtnFilterProducts = new System.Windows.Forms.Button();
@@ -127,23 +135,19 @@ namespace RestaurantFormApp
             this.TxtFilterProductName = new System.Windows.Forms.TextBox();
             this.ChxProductName = new System.Windows.Forms.CheckBox();
             this.LbResetProducts = new System.Windows.Forms.Label();
-            this.RefreshProducts = new System.Windows.Forms.PictureBox();
             this.ListProducts = new System.Windows.Forms.ListBox();
             this.TbLog = new System.Windows.Forms.TabControl();
+            this.LbLastSync = new System.Windows.Forms.Label();
+            this.TxtLastSync = new System.Windows.Forms.Label();
+            this.BtnFeedbackForm = new System.Windows.Forms.Button();
+            this.RefreshOrders = new System.Windows.Forms.PictureBox();
+            this.RefreshProducts = new System.Windows.Forms.PictureBox();
+            this.RefreshCategories = new System.Windows.Forms.PictureBox();
+            this.RefreshTables = new System.Windows.Forms.PictureBox();
             this.PbBorderAdd = new System.Windows.Forms.PictureBox();
             this.PbLog = new System.Windows.Forms.PictureBox();
-            this.ErrOrderProducts = new System.Windows.Forms.Label();
-            this.ListOrders = new System.Windows.Forms.ListBox();
-            this.LbResetOrders = new System.Windows.Forms.Label();
-            this.RefreshOrders = new System.Windows.Forms.PictureBox();
-            this.BtnFilterOrders = new System.Windows.Forms.Button();
-            this.TxtFilterOrderClient = new System.Windows.Forms.TextBox();
-            this.ChxFilterOrderClient = new System.Windows.Forms.CheckBox();
-            this.ChxFilterOrderStatus = new System.Windows.Forms.CheckBox();
-            this.ComboFilterOrderStatus = new System.Windows.Forms.ComboBox();
-            this.BtnDeleteOrder = new System.Windows.Forms.Button();
-            this.BtnUpdateOrder = new System.Windows.Forms.Button();
             this.TbAdd.SuspendLayout();
+            this.AddOrder.SuspendLayout();
             this.AddProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumProductWeight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumProductTime)).BeginInit();
@@ -151,19 +155,18 @@ namespace RestaurantFormApp
             this.AddCategory.SuspendLayout();
             this.AddTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumSeats)).BeginInit();
-            this.AddOrder.SuspendLayout();
             this.TpOrders.SuspendLayout();
             this.TpTables.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumFilterSeats)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshTables)).BeginInit();
             this.TpCategories.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshCategories)).BeginInit();
             this.TpProducts.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshProducts)).BeginInit();
             this.TbLog.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshCategories)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshTables)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbBorderAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbLog)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshOrders)).BeginInit();
             this.SuspendLayout();
             // 
             // TbAdd
@@ -179,6 +182,287 @@ namespace RestaurantFormApp
             this.TbAdd.Size = new System.Drawing.Size(288, 391);
             this.TbAdd.TabIndex = 1;
             this.TbAdd.Selected += new System.Windows.Forms.TabControlEventHandler(this.Tb_Selected);
+            // 
+            // AddOrder
+            // 
+            this.AddOrder.Controls.Add(this.BtnDeleteOrder);
+            this.AddOrder.Controls.Add(this.BtnUpdateOrder);
+            this.AddOrder.Controls.Add(this.ErrOrderProducts);
+            this.AddOrder.Controls.Add(this.LbOrderMessage);
+            this.AddOrder.Controls.Add(this.BtnAddOrder);
+            this.AddOrder.Controls.Add(this.ComboOrderProducts);
+            this.AddOrder.Controls.Add(this.LbOrderProducts);
+            this.AddOrder.Controls.Add(this.ErrOrderTable);
+            this.AddOrder.Controls.Add(this.ComboOrderTable);
+            this.AddOrder.Controls.Add(this.LbOrderTable);
+            this.AddOrder.Controls.Add(this.ErrOrderDiscount);
+            this.AddOrder.Controls.Add(this.ComboOrderDiscount);
+            this.AddOrder.Controls.Add(this.LbOrderDiscount);
+            this.AddOrder.Controls.Add(this.ErrOrderStatus);
+            this.AddOrder.Controls.Add(this.ComboOrderStatus);
+            this.AddOrder.Controls.Add(this.LbOrderStatus);
+            this.AddOrder.Controls.Add(this.ErrOrderInfo);
+            this.AddOrder.Controls.Add(this.TxtOrderInfo);
+            this.AddOrder.Controls.Add(this.LbOrderInfo);
+            this.AddOrder.Controls.Add(this.ErrOrderClient);
+            this.AddOrder.Controls.Add(this.LbOrderClient);
+            this.AddOrder.Controls.Add(this.TxtOrderClient);
+            this.AddOrder.Location = new System.Drawing.Point(4, 25);
+            this.AddOrder.Name = "AddOrder";
+            this.AddOrder.Size = new System.Drawing.Size(280, 362);
+            this.AddOrder.TabIndex = 3;
+            this.AddOrder.Text = "Order";
+            this.AddOrder.UseVisualStyleBackColor = true;
+            // 
+            // BtnDeleteOrder
+            // 
+            this.BtnDeleteOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnDeleteOrder.Location = new System.Drawing.Point(16, 308);
+            this.BtnDeleteOrder.Name = "BtnDeleteOrder";
+            this.BtnDeleteOrder.Size = new System.Drawing.Size(75, 23);
+            this.BtnDeleteOrder.TabIndex = 35;
+            this.BtnDeleteOrder.Text = "Delete";
+            this.BtnDeleteOrder.UseVisualStyleBackColor = true;
+            this.BtnDeleteOrder.Visible = false;
+            this.BtnDeleteOrder.Click += new System.EventHandler(this.BtnDeleteOrder_Click);
+            // 
+            // BtnUpdateOrder
+            // 
+            this.BtnUpdateOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnUpdateOrder.Location = new System.Drawing.Point(97, 308);
+            this.BtnUpdateOrder.Name = "BtnUpdateOrder";
+            this.BtnUpdateOrder.Size = new System.Drawing.Size(75, 23);
+            this.BtnUpdateOrder.TabIndex = 36;
+            this.BtnUpdateOrder.Text = "Update";
+            this.BtnUpdateOrder.UseVisualStyleBackColor = true;
+            this.BtnUpdateOrder.Visible = false;
+            this.BtnUpdateOrder.Click += new System.EventHandler(this.BtnUpdateOrder_Click);
+            // 
+            // ErrOrderProducts
+            // 
+            this.ErrOrderProducts.AutoSize = true;
+            this.ErrOrderProducts.BackColor = System.Drawing.Color.Red;
+            this.ErrOrderProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrOrderProducts.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ErrOrderProducts.Location = new System.Drawing.Point(16, 292);
+            this.ErrOrderProducts.Name = "ErrOrderProducts";
+            this.ErrOrderProducts.Size = new System.Drawing.Size(34, 13);
+            this.ErrOrderProducts.TabIndex = 34;
+            this.ErrOrderProducts.Text = "Error";
+            this.ErrOrderProducts.Visible = false;
+            // 
+            // LbOrderMessage
+            // 
+            this.LbOrderMessage.AutoSize = true;
+            this.LbOrderMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.LbOrderMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderMessage.Location = new System.Drawing.Point(71, 334);
+            this.LbOrderMessage.Name = "LbOrderMessage";
+            this.LbOrderMessage.Size = new System.Drawing.Size(122, 20);
+            this.LbOrderMessage.TabIndex = 33;
+            this.LbOrderMessage.Text = "Order message!";
+            // 
+            // BtnAddOrder
+            // 
+            this.BtnAddOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnAddOrder.Location = new System.Drawing.Point(178, 307);
+            this.BtnAddOrder.Name = "BtnAddOrder";
+            this.BtnAddOrder.Size = new System.Drawing.Size(75, 23);
+            this.BtnAddOrder.TabIndex = 32;
+            this.BtnAddOrder.Text = "Add";
+            this.BtnAddOrder.UseVisualStyleBackColor = true;
+            this.BtnAddOrder.Click += new System.EventHandler(this.BtnAddOrder_Click);
+            // 
+            // ComboOrderProducts
+            // 
+            this.ComboOrderProducts.CheckOnClick = true;
+            this.ComboOrderProducts.FormattingEnabled = true;
+            this.ComboOrderProducts.HorizontalScrollbar = true;
+            this.ComboOrderProducts.Location = new System.Drawing.Point(101, 240);
+            this.ComboOrderProducts.Name = "ComboOrderProducts";
+            this.ComboOrderProducts.Size = new System.Drawing.Size(152, 49);
+            this.ComboOrderProducts.TabIndex = 31;
+            // 
+            // LbOrderProducts
+            // 
+            this.LbOrderProducts.AutoSize = true;
+            this.LbOrderProducts.BackColor = System.Drawing.Color.Transparent;
+            this.LbOrderProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderProducts.Location = new System.Drawing.Point(15, 240);
+            this.LbOrderProducts.Name = "LbOrderProducts";
+            this.LbOrderProducts.Size = new System.Drawing.Size(80, 20);
+            this.LbOrderProducts.TabIndex = 29;
+            this.LbOrderProducts.Text = "Products";
+            // 
+            // ErrOrderTable
+            // 
+            this.ErrOrderTable.AutoSize = true;
+            this.ErrOrderTable.BackColor = System.Drawing.Color.Red;
+            this.ErrOrderTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrOrderTable.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ErrOrderTable.Location = new System.Drawing.Point(16, 227);
+            this.ErrOrderTable.Name = "ErrOrderTable";
+            this.ErrOrderTable.Size = new System.Drawing.Size(34, 13);
+            this.ErrOrderTable.TabIndex = 28;
+            this.ErrOrderTable.Text = "Error";
+            this.ErrOrderTable.Visible = false;
+            // 
+            // ComboOrderTable
+            // 
+            this.ComboOrderTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboOrderTable.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ComboOrderTable.FormattingEnabled = true;
+            this.ComboOrderTable.Location = new System.Drawing.Point(101, 204);
+            this.ComboOrderTable.Name = "ComboOrderTable";
+            this.ComboOrderTable.Size = new System.Drawing.Size(121, 21);
+            this.ComboOrderTable.Sorted = true;
+            this.ComboOrderTable.TabIndex = 27;
+            // 
+            // LbOrderTable
+            // 
+            this.LbOrderTable.AutoSize = true;
+            this.LbOrderTable.BackColor = System.Drawing.Color.Transparent;
+            this.LbOrderTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderTable.Location = new System.Drawing.Point(15, 205);
+            this.LbOrderTable.Name = "LbOrderTable";
+            this.LbOrderTable.Size = new System.Drawing.Size(53, 20);
+            this.LbOrderTable.TabIndex = 26;
+            this.LbOrderTable.Text = "Table";
+            // 
+            // ErrOrderDiscount
+            // 
+            this.ErrOrderDiscount.AutoSize = true;
+            this.ErrOrderDiscount.BackColor = System.Drawing.Color.Red;
+            this.ErrOrderDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrOrderDiscount.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ErrOrderDiscount.Location = new System.Drawing.Point(16, 187);
+            this.ErrOrderDiscount.Name = "ErrOrderDiscount";
+            this.ErrOrderDiscount.Size = new System.Drawing.Size(34, 13);
+            this.ErrOrderDiscount.TabIndex = 25;
+            this.ErrOrderDiscount.Text = "Error";
+            this.ErrOrderDiscount.Visible = false;
+            // 
+            // ComboOrderDiscount
+            // 
+            this.ComboOrderDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboOrderDiscount.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ComboOrderDiscount.FormattingEnabled = true;
+            this.ComboOrderDiscount.Location = new System.Drawing.Point(101, 166);
+            this.ComboOrderDiscount.Name = "ComboOrderDiscount";
+            this.ComboOrderDiscount.Size = new System.Drawing.Size(121, 21);
+            this.ComboOrderDiscount.Sorted = true;
+            this.ComboOrderDiscount.TabIndex = 24;
+            // 
+            // LbOrderDiscount
+            // 
+            this.LbOrderDiscount.AutoSize = true;
+            this.LbOrderDiscount.BackColor = System.Drawing.Color.Transparent;
+            this.LbOrderDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderDiscount.Location = new System.Drawing.Point(15, 164);
+            this.LbOrderDiscount.Name = "LbOrderDiscount";
+            this.LbOrderDiscount.Size = new System.Drawing.Size(80, 20);
+            this.LbOrderDiscount.TabIndex = 23;
+            this.LbOrderDiscount.Text = "Discount";
+            // 
+            // ErrOrderStatus
+            // 
+            this.ErrOrderStatus.AutoSize = true;
+            this.ErrOrderStatus.BackColor = System.Drawing.Color.Red;
+            this.ErrOrderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrOrderStatus.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ErrOrderStatus.Location = new System.Drawing.Point(16, 151);
+            this.ErrOrderStatus.Name = "ErrOrderStatus";
+            this.ErrOrderStatus.Size = new System.Drawing.Size(34, 13);
+            this.ErrOrderStatus.TabIndex = 22;
+            this.ErrOrderStatus.Text = "Error";
+            this.ErrOrderStatus.Visible = false;
+            // 
+            // ComboOrderStatus
+            // 
+            this.ComboOrderStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboOrderStatus.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ComboOrderStatus.FormattingEnabled = true;
+            this.ComboOrderStatus.Location = new System.Drawing.Point(101, 127);
+            this.ComboOrderStatus.Name = "ComboOrderStatus";
+            this.ComboOrderStatus.Size = new System.Drawing.Size(121, 21);
+            this.ComboOrderStatus.Sorted = true;
+            this.ComboOrderStatus.TabIndex = 21;
+            // 
+            // LbOrderStatus
+            // 
+            this.LbOrderStatus.AutoSize = true;
+            this.LbOrderStatus.BackColor = System.Drawing.Color.Transparent;
+            this.LbOrderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderStatus.Location = new System.Drawing.Point(15, 128);
+            this.LbOrderStatus.Name = "LbOrderStatus";
+            this.LbOrderStatus.Size = new System.Drawing.Size(62, 20);
+            this.LbOrderStatus.TabIndex = 20;
+            this.LbOrderStatus.Text = "Status";
+            // 
+            // ErrOrderInfo
+            // 
+            this.ErrOrderInfo.AutoSize = true;
+            this.ErrOrderInfo.BackColor = System.Drawing.Color.Red;
+            this.ErrOrderInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrOrderInfo.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ErrOrderInfo.Location = new System.Drawing.Point(18, 115);
+            this.ErrOrderInfo.Name = "ErrOrderInfo";
+            this.ErrOrderInfo.Size = new System.Drawing.Size(34, 13);
+            this.ErrOrderInfo.TabIndex = 19;
+            this.ErrOrderInfo.Text = "Error";
+            this.ErrOrderInfo.Visible = false;
+            // 
+            // TxtOrderInfo
+            // 
+            this.TxtOrderInfo.Location = new System.Drawing.Point(86, 44);
+            this.TxtOrderInfo.MaxLength = 100;
+            this.TxtOrderInfo.Name = "TxtOrderInfo";
+            this.TxtOrderInfo.Size = new System.Drawing.Size(157, 71);
+            this.TxtOrderInfo.TabIndex = 18;
+            this.TxtOrderInfo.Text = "";
+            // 
+            // LbOrderInfo
+            // 
+            this.LbOrderInfo.AutoSize = true;
+            this.LbOrderInfo.BackColor = System.Drawing.Color.Transparent;
+            this.LbOrderInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderInfo.Location = new System.Drawing.Point(16, 43);
+            this.LbOrderInfo.Name = "LbOrderInfo";
+            this.LbOrderInfo.Size = new System.Drawing.Size(41, 20);
+            this.LbOrderInfo.TabIndex = 17;
+            this.LbOrderInfo.Text = "Info";
+            // 
+            // ErrOrderClient
+            // 
+            this.ErrOrderClient.AutoSize = true;
+            this.ErrOrderClient.BackColor = System.Drawing.Color.Red;
+            this.ErrOrderClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrOrderClient.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.ErrOrderClient.Location = new System.Drawing.Point(18, 30);
+            this.ErrOrderClient.Name = "ErrOrderClient";
+            this.ErrOrderClient.Size = new System.Drawing.Size(34, 13);
+            this.ErrOrderClient.TabIndex = 16;
+            this.ErrOrderClient.Text = "Error";
+            this.ErrOrderClient.Visible = false;
+            // 
+            // LbOrderClient
+            // 
+            this.LbOrderClient.AutoSize = true;
+            this.LbOrderClient.BackColor = System.Drawing.Color.Transparent;
+            this.LbOrderClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbOrderClient.Location = new System.Drawing.Point(15, 7);
+            this.LbOrderClient.Name = "LbOrderClient";
+            this.LbOrderClient.Size = new System.Drawing.Size(55, 20);
+            this.LbOrderClient.TabIndex = 10;
+            this.LbOrderClient.Text = "Client";
+            // 
+            // TxtOrderClient
+            // 
+            this.TxtOrderClient.Location = new System.Drawing.Point(86, 7);
+            this.TxtOrderClient.MaxLength = 50;
+            this.TxtOrderClient.Name = "TxtOrderClient";
+            this.TxtOrderClient.Size = new System.Drawing.Size(157, 20);
+            this.TxtOrderClient.TabIndex = 9;
             // 
             // AddProduct
             // 
@@ -772,250 +1056,6 @@ namespace RestaurantFormApp
             this.LbSeats.TabIndex = 5;
             this.LbSeats.Text = "Number of seats";
             // 
-            // AddOrder
-            // 
-            this.AddOrder.Controls.Add(this.BtnDeleteOrder);
-            this.AddOrder.Controls.Add(this.BtnUpdateOrder);
-            this.AddOrder.Controls.Add(this.ErrOrderProducts);
-            this.AddOrder.Controls.Add(this.LbOrderMessage);
-            this.AddOrder.Controls.Add(this.BtnAddOrder);
-            this.AddOrder.Controls.Add(this.ComboOrderProducts);
-            this.AddOrder.Controls.Add(this.LbOrderProducts);
-            this.AddOrder.Controls.Add(this.ErrOrderTable);
-            this.AddOrder.Controls.Add(this.ComboOrderTable);
-            this.AddOrder.Controls.Add(this.LbOrderTable);
-            this.AddOrder.Controls.Add(this.ErrOrderDiscount);
-            this.AddOrder.Controls.Add(this.ComboOrderDiscount);
-            this.AddOrder.Controls.Add(this.LbOrderDiscount);
-            this.AddOrder.Controls.Add(this.ErrOrderStatus);
-            this.AddOrder.Controls.Add(this.ComboOrderStatus);
-            this.AddOrder.Controls.Add(this.LbOrderStatus);
-            this.AddOrder.Controls.Add(this.ErrOrderInfo);
-            this.AddOrder.Controls.Add(this.TxtOrderInfo);
-            this.AddOrder.Controls.Add(this.LbOrderInfo);
-            this.AddOrder.Controls.Add(this.ErrOrderClient);
-            this.AddOrder.Controls.Add(this.LbOrderClient);
-            this.AddOrder.Controls.Add(this.TxtOrderClient);
-            this.AddOrder.Location = new System.Drawing.Point(4, 25);
-            this.AddOrder.Name = "AddOrder";
-            this.AddOrder.Size = new System.Drawing.Size(280, 362);
-            this.AddOrder.TabIndex = 3;
-            this.AddOrder.Text = "Order";
-            this.AddOrder.UseVisualStyleBackColor = true;
-            // 
-            // LbOrderMessage
-            // 
-            this.LbOrderMessage.AutoSize = true;
-            this.LbOrderMessage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.LbOrderMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderMessage.Location = new System.Drawing.Point(71, 334);
-            this.LbOrderMessage.Name = "LbOrderMessage";
-            this.LbOrderMessage.Size = new System.Drawing.Size(122, 20);
-            this.LbOrderMessage.TabIndex = 33;
-            this.LbOrderMessage.Text = "Order message!";
-            // 
-            // BtnAddOrder
-            // 
-            this.BtnAddOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnAddOrder.Location = new System.Drawing.Point(178, 307);
-            this.BtnAddOrder.Name = "BtnAddOrder";
-            this.BtnAddOrder.Size = new System.Drawing.Size(75, 23);
-            this.BtnAddOrder.TabIndex = 32;
-            this.BtnAddOrder.Text = "Add";
-            this.BtnAddOrder.UseVisualStyleBackColor = true;
-            this.BtnAddOrder.Click += new System.EventHandler(this.BtnAddOrder_Click);
-            // 
-            // ComboOrderProducts
-            // 
-            this.ComboOrderProducts.CheckOnClick = true;
-            this.ComboOrderProducts.FormattingEnabled = true;
-            this.ComboOrderProducts.HorizontalScrollbar = true;
-            this.ComboOrderProducts.Location = new System.Drawing.Point(101, 240);
-            this.ComboOrderProducts.Name = "ComboOrderProducts";
-            this.ComboOrderProducts.Size = new System.Drawing.Size(152, 49);
-            this.ComboOrderProducts.TabIndex = 31;
-            // 
-            // LbOrderProducts
-            // 
-            this.LbOrderProducts.AutoSize = true;
-            this.LbOrderProducts.BackColor = System.Drawing.Color.Transparent;
-            this.LbOrderProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderProducts.Location = new System.Drawing.Point(15, 240);
-            this.LbOrderProducts.Name = "LbOrderProducts";
-            this.LbOrderProducts.Size = new System.Drawing.Size(80, 20);
-            this.LbOrderProducts.TabIndex = 29;
-            this.LbOrderProducts.Text = "Products";
-            // 
-            // ErrOrderTable
-            // 
-            this.ErrOrderTable.AutoSize = true;
-            this.ErrOrderTable.BackColor = System.Drawing.Color.Red;
-            this.ErrOrderTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrOrderTable.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ErrOrderTable.Location = new System.Drawing.Point(16, 227);
-            this.ErrOrderTable.Name = "ErrOrderTable";
-            this.ErrOrderTable.Size = new System.Drawing.Size(34, 13);
-            this.ErrOrderTable.TabIndex = 28;
-            this.ErrOrderTable.Text = "Error";
-            this.ErrOrderTable.Visible = false;
-            // 
-            // ComboOrderTable
-            // 
-            this.ComboOrderTable.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboOrderTable.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ComboOrderTable.FormattingEnabled = true;
-            this.ComboOrderTable.Location = new System.Drawing.Point(101, 204);
-            this.ComboOrderTable.Name = "ComboOrderTable";
-            this.ComboOrderTable.Size = new System.Drawing.Size(121, 21);
-            this.ComboOrderTable.Sorted = true;
-            this.ComboOrderTable.TabIndex = 27;
-            // 
-            // LbOrderTable
-            // 
-            this.LbOrderTable.AutoSize = true;
-            this.LbOrderTable.BackColor = System.Drawing.Color.Transparent;
-            this.LbOrderTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderTable.Location = new System.Drawing.Point(15, 205);
-            this.LbOrderTable.Name = "LbOrderTable";
-            this.LbOrderTable.Size = new System.Drawing.Size(53, 20);
-            this.LbOrderTable.TabIndex = 26;
-            this.LbOrderTable.Text = "Table";
-            // 
-            // ErrOrderDiscount
-            // 
-            this.ErrOrderDiscount.AutoSize = true;
-            this.ErrOrderDiscount.BackColor = System.Drawing.Color.Red;
-            this.ErrOrderDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrOrderDiscount.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ErrOrderDiscount.Location = new System.Drawing.Point(16, 187);
-            this.ErrOrderDiscount.Name = "ErrOrderDiscount";
-            this.ErrOrderDiscount.Size = new System.Drawing.Size(34, 13);
-            this.ErrOrderDiscount.TabIndex = 25;
-            this.ErrOrderDiscount.Text = "Error";
-            this.ErrOrderDiscount.Visible = false;
-            // 
-            // ComboOrderDiscount
-            // 
-            this.ComboOrderDiscount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboOrderDiscount.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ComboOrderDiscount.FormattingEnabled = true;
-            this.ComboOrderDiscount.Location = new System.Drawing.Point(101, 166);
-            this.ComboOrderDiscount.Name = "ComboOrderDiscount";
-            this.ComboOrderDiscount.Size = new System.Drawing.Size(121, 21);
-            this.ComboOrderDiscount.Sorted = true;
-            this.ComboOrderDiscount.TabIndex = 24;
-            // 
-            // LbOrderDiscount
-            // 
-            this.LbOrderDiscount.AutoSize = true;
-            this.LbOrderDiscount.BackColor = System.Drawing.Color.Transparent;
-            this.LbOrderDiscount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderDiscount.Location = new System.Drawing.Point(15, 164);
-            this.LbOrderDiscount.Name = "LbOrderDiscount";
-            this.LbOrderDiscount.Size = new System.Drawing.Size(80, 20);
-            this.LbOrderDiscount.TabIndex = 23;
-            this.LbOrderDiscount.Text = "Discount";
-            // 
-            // ErrOrderStatus
-            // 
-            this.ErrOrderStatus.AutoSize = true;
-            this.ErrOrderStatus.BackColor = System.Drawing.Color.Red;
-            this.ErrOrderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrOrderStatus.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ErrOrderStatus.Location = new System.Drawing.Point(16, 151);
-            this.ErrOrderStatus.Name = "ErrOrderStatus";
-            this.ErrOrderStatus.Size = new System.Drawing.Size(34, 13);
-            this.ErrOrderStatus.TabIndex = 22;
-            this.ErrOrderStatus.Text = "Error";
-            this.ErrOrderStatus.Visible = false;
-            // 
-            // ComboOrderStatus
-            // 
-            this.ComboOrderStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboOrderStatus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ComboOrderStatus.FormattingEnabled = true;
-            this.ComboOrderStatus.Location = new System.Drawing.Point(101, 127);
-            this.ComboOrderStatus.Name = "ComboOrderStatus";
-            this.ComboOrderStatus.Size = new System.Drawing.Size(121, 21);
-            this.ComboOrderStatus.Sorted = true;
-            this.ComboOrderStatus.TabIndex = 21;
-            // 
-            // LbOrderStatus
-            // 
-            this.LbOrderStatus.AutoSize = true;
-            this.LbOrderStatus.BackColor = System.Drawing.Color.Transparent;
-            this.LbOrderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderStatus.Location = new System.Drawing.Point(15, 128);
-            this.LbOrderStatus.Name = "LbOrderStatus";
-            this.LbOrderStatus.Size = new System.Drawing.Size(62, 20);
-            this.LbOrderStatus.TabIndex = 20;
-            this.LbOrderStatus.Text = "Status";
-            // 
-            // ErrOrderInfo
-            // 
-            this.ErrOrderInfo.AutoSize = true;
-            this.ErrOrderInfo.BackColor = System.Drawing.Color.Red;
-            this.ErrOrderInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrOrderInfo.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ErrOrderInfo.Location = new System.Drawing.Point(18, 115);
-            this.ErrOrderInfo.Name = "ErrOrderInfo";
-            this.ErrOrderInfo.Size = new System.Drawing.Size(34, 13);
-            this.ErrOrderInfo.TabIndex = 19;
-            this.ErrOrderInfo.Text = "Error";
-            this.ErrOrderInfo.Visible = false;
-            // 
-            // TxtOrderInfo
-            // 
-            this.TxtOrderInfo.Location = new System.Drawing.Point(86, 44);
-            this.TxtOrderInfo.MaxLength = 100;
-            this.TxtOrderInfo.Name = "TxtOrderInfo";
-            this.TxtOrderInfo.Size = new System.Drawing.Size(157, 71);
-            this.TxtOrderInfo.TabIndex = 18;
-            this.TxtOrderInfo.Text = "";
-            // 
-            // LbOrderInfo
-            // 
-            this.LbOrderInfo.AutoSize = true;
-            this.LbOrderInfo.BackColor = System.Drawing.Color.Transparent;
-            this.LbOrderInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderInfo.Location = new System.Drawing.Point(16, 43);
-            this.LbOrderInfo.Name = "LbOrderInfo";
-            this.LbOrderInfo.Size = new System.Drawing.Size(41, 20);
-            this.LbOrderInfo.TabIndex = 17;
-            this.LbOrderInfo.Text = "Info";
-            // 
-            // ErrOrderClient
-            // 
-            this.ErrOrderClient.AutoSize = true;
-            this.ErrOrderClient.BackColor = System.Drawing.Color.Red;
-            this.ErrOrderClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrOrderClient.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ErrOrderClient.Location = new System.Drawing.Point(18, 30);
-            this.ErrOrderClient.Name = "ErrOrderClient";
-            this.ErrOrderClient.Size = new System.Drawing.Size(34, 13);
-            this.ErrOrderClient.TabIndex = 16;
-            this.ErrOrderClient.Text = "Error";
-            this.ErrOrderClient.Visible = false;
-            // 
-            // LbOrderClient
-            // 
-            this.LbOrderClient.AutoSize = true;
-            this.LbOrderClient.BackColor = System.Drawing.Color.Transparent;
-            this.LbOrderClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbOrderClient.Location = new System.Drawing.Point(15, 7);
-            this.LbOrderClient.Name = "LbOrderClient";
-            this.LbOrderClient.Size = new System.Drawing.Size(55, 20);
-            this.LbOrderClient.TabIndex = 10;
-            this.LbOrderClient.Text = "Client";
-            // 
-            // TxtOrderClient
-            // 
-            this.TxtOrderClient.Location = new System.Drawing.Point(86, 7);
-            this.TxtOrderClient.MaxLength = 50;
-            this.TxtOrderClient.Name = "TxtOrderClient";
-            this.TxtOrderClient.Size = new System.Drawing.Size(157, 20);
-            this.TxtOrderClient.TabIndex = 9;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -1052,6 +1092,79 @@ namespace RestaurantFormApp
             this.TpOrders.TabIndex = 3;
             this.TpOrders.Text = "Orders";
             this.TpOrders.UseVisualStyleBackColor = true;
+            // 
+            // ComboFilterOrderStatus
+            // 
+            this.ComboFilterOrderStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboFilterOrderStatus.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.ComboFilterOrderStatus.FormattingEnabled = true;
+            this.ComboFilterOrderStatus.Location = new System.Drawing.Point(104, 21);
+            this.ComboFilterOrderStatus.Name = "ComboFilterOrderStatus";
+            this.ComboFilterOrderStatus.Size = new System.Drawing.Size(76, 21);
+            this.ComboFilterOrderStatus.Sorted = true;
+            this.ComboFilterOrderStatus.TabIndex = 25;
+            this.ComboFilterOrderStatus.Visible = false;
+            // 
+            // TxtFilterOrderClient
+            // 
+            this.TxtFilterOrderClient.Location = new System.Drawing.Point(6, 22);
+            this.TxtFilterOrderClient.Name = "TxtFilterOrderClient";
+            this.TxtFilterOrderClient.Size = new System.Drawing.Size(78, 20);
+            this.TxtFilterOrderClient.TabIndex = 24;
+            this.TxtFilterOrderClient.Visible = false;
+            // 
+            // ChxFilterOrderStatus
+            // 
+            this.ChxFilterOrderStatus.AutoSize = true;
+            this.ChxFilterOrderStatus.Location = new System.Drawing.Point(104, 3);
+            this.ChxFilterOrderStatus.Name = "ChxFilterOrderStatus";
+            this.ChxFilterOrderStatus.Size = new System.Drawing.Size(56, 17);
+            this.ChxFilterOrderStatus.TabIndex = 23;
+            this.ChxFilterOrderStatus.Text = "Status";
+            this.ChxFilterOrderStatus.UseVisualStyleBackColor = true;
+            this.ChxFilterOrderStatus.CheckedChanged += new System.EventHandler(this.ChxFilterOrderStatus_CheckedChanged);
+            // 
+            // ChxFilterOrderClient
+            // 
+            this.ChxFilterOrderClient.AutoSize = true;
+            this.ChxFilterOrderClient.Location = new System.Drawing.Point(8, 3);
+            this.ChxFilterOrderClient.Name = "ChxFilterOrderClient";
+            this.ChxFilterOrderClient.Size = new System.Drawing.Size(52, 17);
+            this.ChxFilterOrderClient.TabIndex = 23;
+            this.ChxFilterOrderClient.Text = "Client";
+            this.ChxFilterOrderClient.UseVisualStyleBackColor = true;
+            this.ChxFilterOrderClient.CheckedChanged += new System.EventHandler(this.ChxFilterOrderClient_CheckedChanged);
+            // 
+            // BtnFilterOrders
+            // 
+            this.BtnFilterOrders.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.BtnFilterOrders.Location = new System.Drawing.Point(220, 53);
+            this.BtnFilterOrders.Name = "BtnFilterOrders";
+            this.BtnFilterOrders.Size = new System.Drawing.Size(70, 23);
+            this.BtnFilterOrders.TabIndex = 22;
+            this.BtnFilterOrders.Text = "Filter";
+            this.BtnFilterOrders.UseVisualStyleBackColor = true;
+            this.BtnFilterOrders.Click += new System.EventHandler(this.Filter_Click);
+            // 
+            // LbResetOrders
+            // 
+            this.LbResetOrders.AutoSize = true;
+            this.LbResetOrders.Location = new System.Drawing.Point(2, 58);
+            this.LbResetOrders.Name = "LbResetOrders";
+            this.LbResetOrders.Size = new System.Drawing.Size(35, 13);
+            this.LbResetOrders.TabIndex = 17;
+            this.LbResetOrders.Text = "Reset";
+            // 
+            // ListOrders
+            // 
+            this.ListOrders.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ListOrders.FormattingEnabled = true;
+            this.ListOrders.HorizontalScrollbar = true;
+            this.ListOrders.Location = new System.Drawing.Point(0, 81);
+            this.ListOrders.Name = "ListOrders";
+            this.ListOrders.Size = new System.Drawing.Size(296, 264);
+            this.ListOrders.TabIndex = 2;
+            this.ListOrders.SelectedIndexChanged += new System.EventHandler(this.ListOrders_SelectedIndexChanged);
             // 
             // TpTables
             // 
@@ -1168,18 +1281,6 @@ namespace RestaurantFormApp
             this.ChxFilterOcuppied.UseVisualStyleBackColor = true;
             this.ChxFilterOcuppied.Visible = false;
             // 
-            // RefreshTables
-            // 
-            this.RefreshTables.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RefreshTables.Image = global::RestaurantFormApp.Properties.Resources.refresh;
-            this.RefreshTables.Location = new System.Drawing.Point(42, 55);
-            this.RefreshTables.Name = "RefreshTables";
-            this.RefreshTables.Size = new System.Drawing.Size(21, 20);
-            this.RefreshTables.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RefreshTables.TabIndex = 9;
-            this.RefreshTables.TabStop = false;
-            this.RefreshTables.Click += new System.EventHandler(this.Refresh_Click);
-            // 
             // TpCategories
             // 
             this.TpCategories.BackColor = System.Drawing.SystemColors.Control;
@@ -1254,18 +1355,6 @@ namespace RestaurantFormApp
             this.LbResetCategories.Size = new System.Drawing.Size(35, 13);
             this.LbResetCategories.TabIndex = 13;
             this.LbResetCategories.Text = "Reset";
-            // 
-            // RefreshCategories
-            // 
-            this.RefreshCategories.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RefreshCategories.Image = global::RestaurantFormApp.Properties.Resources.refresh;
-            this.RefreshCategories.Location = new System.Drawing.Point(38, 56);
-            this.RefreshCategories.Name = "RefreshCategories";
-            this.RefreshCategories.Size = new System.Drawing.Size(21, 20);
-            this.RefreshCategories.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RefreshCategories.TabIndex = 12;
-            this.RefreshCategories.TabStop = false;
-            this.RefreshCategories.Click += new System.EventHandler(this.Refresh_Click);
             // 
             // ListCategories
             // 
@@ -1379,18 +1468,6 @@ namespace RestaurantFormApp
             this.LbResetProducts.TabIndex = 15;
             this.LbResetProducts.Text = "Reset";
             // 
-            // RefreshProducts
-            // 
-            this.RefreshProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RefreshProducts.Image = global::RestaurantFormApp.Properties.Resources.refresh;
-            this.RefreshProducts.Location = new System.Drawing.Point(42, 56);
-            this.RefreshProducts.Name = "RefreshProducts";
-            this.RefreshProducts.Size = new System.Drawing.Size(21, 20);
-            this.RefreshProducts.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RefreshProducts.TabIndex = 14;
-            this.RefreshProducts.TabStop = false;
-            this.RefreshProducts.Click += new System.EventHandler(this.Refresh_Click);
-            // 
             // ListProducts
             // 
             this.ListProducts.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1416,6 +1493,82 @@ namespace RestaurantFormApp
             this.TbLog.TabIndex = 7;
             this.TbLog.Selected += new System.Windows.Forms.TabControlEventHandler(this.Tb_Selected);
             // 
+            // LbLastSync
+            // 
+            this.LbLastSync.AutoSize = true;
+            this.LbLastSync.Location = new System.Drawing.Point(743, 462);
+            this.LbLastSync.Name = "LbLastSync";
+            this.LbLastSync.Size = new System.Drawing.Size(57, 13);
+            this.LbLastSync.TabIndex = 8;
+            this.LbLastSync.Text = "Last Sync:";
+            // 
+            // TxtLastSync
+            // 
+            this.TxtLastSync.AutoSize = true;
+            this.TxtLastSync.Location = new System.Drawing.Point(806, 462);
+            this.TxtLastSync.Name = "TxtLastSync";
+            this.TxtLastSync.Size = new System.Drawing.Size(63, 13);
+            this.TxtLastSync.TabIndex = 9;
+            this.TxtLastSync.Text = "Placeholder";
+            // 
+            // BtnFeedbackForm
+            // 
+            this.BtnFeedbackForm.Location = new System.Drawing.Point(642, 457);
+            this.BtnFeedbackForm.Name = "BtnFeedbackForm";
+            this.BtnFeedbackForm.Size = new System.Drawing.Size(75, 23);
+            this.BtnFeedbackForm.TabIndex = 10;
+            this.BtnFeedbackForm.Text = "Feedback";
+            this.BtnFeedbackForm.UseVisualStyleBackColor = true;
+            this.BtnFeedbackForm.Click += new System.EventHandler(this.BtnFeedbackForm_Click);
+            // 
+            // RefreshOrders
+            // 
+            this.RefreshOrders.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RefreshOrders.Image = global::RestaurantFormApp.Properties.Resources.refresh;
+            this.RefreshOrders.Location = new System.Drawing.Point(41, 55);
+            this.RefreshOrders.Name = "RefreshOrders";
+            this.RefreshOrders.Size = new System.Drawing.Size(21, 20);
+            this.RefreshOrders.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RefreshOrders.TabIndex = 16;
+            this.RefreshOrders.TabStop = false;
+            this.RefreshOrders.Click += new System.EventHandler(this.Refresh_Click);
+            // 
+            // RefreshProducts
+            // 
+            this.RefreshProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RefreshProducts.Image = global::RestaurantFormApp.Properties.Resources.refresh;
+            this.RefreshProducts.Location = new System.Drawing.Point(42, 56);
+            this.RefreshProducts.Name = "RefreshProducts";
+            this.RefreshProducts.Size = new System.Drawing.Size(21, 20);
+            this.RefreshProducts.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RefreshProducts.TabIndex = 14;
+            this.RefreshProducts.TabStop = false;
+            this.RefreshProducts.Click += new System.EventHandler(this.Refresh_Click);
+            // 
+            // RefreshCategories
+            // 
+            this.RefreshCategories.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RefreshCategories.Image = global::RestaurantFormApp.Properties.Resources.refresh;
+            this.RefreshCategories.Location = new System.Drawing.Point(38, 56);
+            this.RefreshCategories.Name = "RefreshCategories";
+            this.RefreshCategories.Size = new System.Drawing.Size(21, 20);
+            this.RefreshCategories.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RefreshCategories.TabIndex = 12;
+            this.RefreshCategories.TabStop = false;
+            this.RefreshCategories.Click += new System.EventHandler(this.Refresh_Click);
+            // 
+            // RefreshTables
+            // 
+            this.RefreshTables.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.RefreshTables.Image = global::RestaurantFormApp.Properties.Resources.refresh;
+            this.RefreshTables.Location = new System.Drawing.Point(42, 55);
+            this.RefreshTables.Name = "RefreshTables";
+            this.RefreshTables.Size = new System.Drawing.Size(21, 20);
+            this.RefreshTables.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.RefreshTables.TabIndex = 9;
+            this.RefreshTables.TabStop = false;
+            this.RefreshTables.Click += new System.EventHandler(this.Refresh_Click);
+            // 
             // PbBorderAdd
             // 
             this.PbBorderAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -1438,133 +1591,14 @@ namespace RestaurantFormApp
             this.PbLog.TabIndex = 6;
             this.PbLog.TabStop = false;
             // 
-            // ErrOrderProducts
-            // 
-            this.ErrOrderProducts.AutoSize = true;
-            this.ErrOrderProducts.BackColor = System.Drawing.Color.Red;
-            this.ErrOrderProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ErrOrderProducts.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.ErrOrderProducts.Location = new System.Drawing.Point(16, 292);
-            this.ErrOrderProducts.Name = "ErrOrderProducts";
-            this.ErrOrderProducts.Size = new System.Drawing.Size(34, 13);
-            this.ErrOrderProducts.TabIndex = 34;
-            this.ErrOrderProducts.Text = "Error";
-            this.ErrOrderProducts.Visible = false;
-            // 
-            // ListOrders
-            // 
-            this.ListOrders.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ListOrders.FormattingEnabled = true;
-            this.ListOrders.HorizontalScrollbar = true;
-            this.ListOrders.Location = new System.Drawing.Point(0, 81);
-            this.ListOrders.Name = "ListOrders";
-            this.ListOrders.Size = new System.Drawing.Size(296, 264);
-            this.ListOrders.TabIndex = 2;
-            this.ListOrders.SelectedIndexChanged += new System.EventHandler(this.ListOrders_SelectedIndexChanged);
-            // 
-            // LbResetOrders
-            // 
-            this.LbResetOrders.AutoSize = true;
-            this.LbResetOrders.Location = new System.Drawing.Point(2, 58);
-            this.LbResetOrders.Name = "LbResetOrders";
-            this.LbResetOrders.Size = new System.Drawing.Size(35, 13);
-            this.LbResetOrders.TabIndex = 17;
-            this.LbResetOrders.Text = "Reset";
-            // 
-            // RefreshOrders
-            // 
-            this.RefreshOrders.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.RefreshOrders.Image = global::RestaurantFormApp.Properties.Resources.refresh;
-            this.RefreshOrders.Location = new System.Drawing.Point(41, 55);
-            this.RefreshOrders.Name = "RefreshOrders";
-            this.RefreshOrders.Size = new System.Drawing.Size(21, 20);
-            this.RefreshOrders.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.RefreshOrders.TabIndex = 16;
-            this.RefreshOrders.TabStop = false;
-            this.RefreshOrders.Click += new System.EventHandler(this.Refresh_Click);
-            // 
-            // BtnFilterOrders
-            // 
-            this.BtnFilterOrders.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnFilterOrders.Location = new System.Drawing.Point(220, 53);
-            this.BtnFilterOrders.Name = "BtnFilterOrders";
-            this.BtnFilterOrders.Size = new System.Drawing.Size(70, 23);
-            this.BtnFilterOrders.TabIndex = 22;
-            this.BtnFilterOrders.Text = "Filter";
-            this.BtnFilterOrders.UseVisualStyleBackColor = true;
-            this.BtnFilterOrders.Click += new System.EventHandler(this.Filter_Click);
-            // 
-            // TxtFilterOrderClient
-            // 
-            this.TxtFilterOrderClient.Location = new System.Drawing.Point(6, 22);
-            this.TxtFilterOrderClient.Name = "TxtFilterOrderClient";
-            this.TxtFilterOrderClient.Size = new System.Drawing.Size(78, 20);
-            this.TxtFilterOrderClient.TabIndex = 24;
-            this.TxtFilterOrderClient.Visible = false;
-            // 
-            // ChxFilterOrderClient
-            // 
-            this.ChxFilterOrderClient.AutoSize = true;
-            this.ChxFilterOrderClient.Location = new System.Drawing.Point(8, 3);
-            this.ChxFilterOrderClient.Name = "ChxFilterOrderClient";
-            this.ChxFilterOrderClient.Size = new System.Drawing.Size(52, 17);
-            this.ChxFilterOrderClient.TabIndex = 23;
-            this.ChxFilterOrderClient.Text = "Client";
-            this.ChxFilterOrderClient.UseVisualStyleBackColor = true;
-            this.ChxFilterOrderClient.CheckedChanged += new System.EventHandler(this.ChxFilterOrderClient_CheckedChanged);
-            // 
-            // ChxFilterOrderStatus
-            // 
-            this.ChxFilterOrderStatus.AutoSize = true;
-            this.ChxFilterOrderStatus.Location = new System.Drawing.Point(104, 3);
-            this.ChxFilterOrderStatus.Name = "ChxFilterOrderStatus";
-            this.ChxFilterOrderStatus.Size = new System.Drawing.Size(56, 17);
-            this.ChxFilterOrderStatus.TabIndex = 23;
-            this.ChxFilterOrderStatus.Text = "Status";
-            this.ChxFilterOrderStatus.UseVisualStyleBackColor = true;
-            this.ChxFilterOrderStatus.CheckedChanged += new System.EventHandler(this.ChxFilterOrderStatus_CheckedChanged);
-            // 
-            // ComboFilterOrderStatus
-            // 
-            this.ComboFilterOrderStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboFilterOrderStatus.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.ComboFilterOrderStatus.FormattingEnabled = true;
-            this.ComboFilterOrderStatus.Location = new System.Drawing.Point(104, 21);
-            this.ComboFilterOrderStatus.Name = "ComboFilterOrderStatus";
-            this.ComboFilterOrderStatus.Size = new System.Drawing.Size(76, 21);
-            this.ComboFilterOrderStatus.Sorted = true;
-            this.ComboFilterOrderStatus.TabIndex = 25;
-            this.ComboFilterOrderStatus.Visible = false;
-            // 
-            // BtnDeleteOrder
-            // 
-            this.BtnDeleteOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnDeleteOrder.Location = new System.Drawing.Point(16, 308);
-            this.BtnDeleteOrder.Name = "BtnDeleteOrder";
-            this.BtnDeleteOrder.Size = new System.Drawing.Size(75, 23);
-            this.BtnDeleteOrder.TabIndex = 35;
-            this.BtnDeleteOrder.Text = "Delete";
-            this.BtnDeleteOrder.UseVisualStyleBackColor = true;
-            this.BtnDeleteOrder.Visible = false;
-            this.BtnDeleteOrder.Click += new System.EventHandler(this.BtnDeleteOrder_Click);
-            // 
-            // BtnUpdateOrder
-            // 
-            this.BtnUpdateOrder.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.BtnUpdateOrder.Location = new System.Drawing.Point(97, 308);
-            this.BtnUpdateOrder.Name = "BtnUpdateOrder";
-            this.BtnUpdateOrder.Size = new System.Drawing.Size(75, 23);
-            this.BtnUpdateOrder.TabIndex = 36;
-            this.BtnUpdateOrder.Text = "Update";
-            this.BtnUpdateOrder.UseVisualStyleBackColor = true;
-            this.BtnUpdateOrder.Visible = false;
-            this.BtnUpdateOrder.Click += new System.EventHandler(this.BtnUpdateOrder_Click);
-            // 
             // RestaurantForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(944, 453);
+            this.ClientSize = new System.Drawing.Size(952, 484);
+            this.Controls.Add(this.BtnFeedbackForm);
+            this.Controls.Add(this.TxtLastSync);
+            this.Controls.Add(this.LbLastSync);
             this.Controls.Add(this.TbLog);
             this.Controls.Add(this.LblLog);
             this.Controls.Add(this.label1);
@@ -1575,6 +1609,8 @@ namespace RestaurantFormApp
             this.Name = "RestaurantForm";
             this.Text = "Restaurant";
             this.TbAdd.ResumeLayout(false);
+            this.AddOrder.ResumeLayout(false);
+            this.AddOrder.PerformLayout();
             this.AddProduct.ResumeLayout(false);
             this.AddProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumProductWeight)).EndInit();
@@ -1585,24 +1621,22 @@ namespace RestaurantFormApp
             this.AddTable.ResumeLayout(false);
             this.AddTable.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumSeats)).EndInit();
-            this.AddOrder.ResumeLayout(false);
-            this.AddOrder.PerformLayout();
             this.TpOrders.ResumeLayout(false);
             this.TpOrders.PerformLayout();
             this.TpTables.ResumeLayout(false);
             this.TpTables.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NumFilterSeats)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshTables)).EndInit();
             this.TpCategories.ResumeLayout(false);
             this.TpCategories.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshCategories)).EndInit();
             this.TpProducts.ResumeLayout(false);
             this.TpProducts.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshProducts)).EndInit();
             this.TbLog.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshCategories)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RefreshTables)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbBorderAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbLog)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.RefreshOrders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1723,6 +1757,9 @@ namespace RestaurantFormApp
         private System.Windows.Forms.ComboBox ComboFilterOrderStatus;
         private System.Windows.Forms.Button BtnDeleteOrder;
         private System.Windows.Forms.Button BtnUpdateOrder;
+        private System.Windows.Forms.Label LbLastSync;
+        private System.Windows.Forms.Label TxtLastSync;
+        private System.Windows.Forms.Button BtnFeedbackForm;
     }
 }
 

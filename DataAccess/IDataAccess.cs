@@ -51,4 +51,11 @@ namespace DataAccess
         void DeleteOrder(Order _order);
         void UpdateOrderFile();
     }
+
+    public interface IDataAccessFeedbacks
+    {
+        void AddFeedback(Feedback f);
+        List<Feedback> GetFeedbacks();
+        void UpdateFeedbackFile();
+    }
 }

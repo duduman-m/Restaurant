@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Category.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Feedback.cs" />
     <Compile Include="Log.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Table.cs" />

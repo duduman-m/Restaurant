@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DataAccess
 {
-    public class Text_File_Administration : IDataAccessProducts, IDataAccessCategories, IDataAccessTables, IDataAccessOrders
+    public class Text_File_Administration : IDataAccessProducts, IDataAccessCategories, IDataAccessTables, IDataAccessOrders, IDataAccessFeedbacks
     {
         string FileName { set; get; }
 
@@ -469,6 +469,77 @@ namespace DataAccess
                     foreach (Order o in Log.AllOrders)
                     {
                         swFisierText.WriteLine(o.ConvertToFileString());
+                    }
+                }
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("The file couldn't be open. Error: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Generric Error: " + eGen.Message);
+            }
+        }
+
+        public void AddFeedback(Feedback f)
+        {
+            try
+            {
+                using (StreamWriter swFisierText = new StreamWriter(FileName, true))
+                {
+                    swFisierText.WriteLine(f.ConvertToFileString());
+                }
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("The file couldn't be open. Error: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Generric Error: " + eGen.Message);
+            }
+        }
+
+        public List<Feedback> GetFeedbacks()
+        {
+            List<Feedback> feedbacks = new List<Feedback>();
+
+            try
+            {
+                using (StreamReader sr = new StreamReader(FileName))
+                {
+                    string line;
+
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Feedback FileFeedback = new Feedback(line);
+                        feedbacks.Add(FileFeedback);
+                    }
+                }
+            }
+            catch (IOException eIO)
+            {
+                throw new Exception("The file couldn't be open. Error: " + eIO.Message);
+            }
+            catch (Exception eGen)
+            {
+                throw new Exception("Generric Error: " + eGen.Message);
+            }
+
+            return feedbacks;
+        }
+
+        public void UpdateFeedbackFile()
+        {
+            try
+            {
+                File.Delete(FileName);
+                using (StreamWriter swFisierText = new StreamWriter(FileName, true))
+                {
+                    foreach (Feedback f in Log.AllFeedbacks)
+                    {
+                        swFisierText.WriteLine(f.ConvertToFileString());
                     }
                 }
             }

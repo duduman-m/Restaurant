@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DataAccess
 {
-    public class Binary_File_Administration : IDataAccessProducts, IDataAccessCategories, IDataAccessTables, IDataAccessOrders
+    public class Binary_File_Administration : IDataAccessProducts, IDataAccessCategories, IDataAccessTables, IDataAccessOrders, IDataAccessFeedbacks
     {
         string FileName { set; get; }
 
@@ -216,6 +216,21 @@ namespace DataAccess
         }
 
         public void UpdateOrderFile()
+        {
+            throw new Exception("Not implemented yet");
+        }
+
+        public void AddFeedback(Feedback f)
+        {
+            throw new Exception("Not implemented yet");
+        }
+
+        public List<Feedback> GetFeedbacks()
+        {
+            throw new Exception("Not implemented yet");
+        }
+
+        public void UpdateFeedbackFile()
         {
             throw new Exception("Not implemented yet");
         }
